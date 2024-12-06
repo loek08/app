@@ -10,6 +10,8 @@ class BarcodeScannerPage extends StatefulWidget {
 class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
   final Barcode barcode = Barcode();
   String scannedResult = 'niets gescanned';
+  final TextEditingController _quantityController = TextEditingController();
+  bool showQuantityInput = false;
 
   Future<void> scanBarcode() async {
     try {
@@ -20,23 +22,38 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
         if (result.rawContent.isNotEmpty) {
           // Kijk of de gescande barcode in de productDatabase zit
           if (barcode.productDatabase.containsKey(result.rawContent)) {
-            barcode.increaseQuantity(result.rawContent);
             scannedResult =
                 "Product gevonden: ${barcode.getProductDatabase()[result.rawContent]!['name']} - Aantal: ${barcode.productDatabase[result.rawContent]!['quantity']}";
+            showQuantityInput = true;
           } else {
             // Barcode is gescand maar niet in de database
             scannedResult = "Onbekende barcode: ${result.rawContent}";
+            showQuantityInput = false;
           }
         } else {
           // Geen barcode gescand
           scannedResult = "Geen product gescand";
+          showQuantityInput = false;
         }
       });
     } catch (e) {
       setState(() {
         scannedResult = "Fout bij scannen: $e";
+        showQuantityInput = false;
       });
     }
+  }
+
+  void addQuantity(String barcodeKey, int quantity) {
+    for (int i = 0; i < quantity; i++) {
+      barcode.increaseQuantity(barcodeKey);
+    }
+    setState(() {
+      scannedResult =
+          "Aantal toegevoegd: ${barcode.productDatabase[barcodeKey]!['quantity']}";
+      showQuantityInput = false;
+    });
+    barcode.saveDatabase();
   }
 
   @override
@@ -59,6 +76,27 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
               onPressed: scanBarcode,
               child: Text('Scan barcode'),
             ),
+            if (showQuantityInput) ...[
+              SizedBox(height: 20),
+              TextField(
+                controller: _quantityController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Voer het aantal in',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_quantityController.text.isNotEmpty) {
+                    int quantity = int.parse(_quantityController.text);
+                    addQuantity(scannedResult.split(": ")[1], quantity);
+                  }
+                },
+                child: Text('Aantal Toevoegen'),
+              ),
+            ],
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
