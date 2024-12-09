@@ -10,29 +10,44 @@ class BarcodeScannerPage2 extends StatefulWidget {
 class _BarcodeScannerPageState extends State<BarcodeScannerPage2> {
   final Barcode barcode = Barcode();
   String scannedResult = 'niets gescanned';
+  final TextEditingController _quantityController = TextEditingController();
 
-  Future<void> scanBarcode() async {
+  void scanAndAddQuantity() async {
     try {
-      var result = await BarcodeScanner.scan();
+      var result = await BarcodeScanner.scan(); // Scan de barcode
+      String barcodeKey = result.rawContent;
 
-      setState(() {
-        // Controleer eerst of er daadwerkelijk een barcode is gescand
-        if (result.rawContent.isNotEmpty) {
-          // Kijk of de gescande barcode in de productDatabase zit
-          if (barcode.productDatabase.containsKey(result.rawContent)) {
-            // Verlaag de hoeveelheid van het product
-            barcode.decreaseQuantity(result.rawContent);
-            scannedResult =
-                "Product gevonden: ${barcode.productDatabase[result.rawContent]!['name']} - Aantal: ${barcode.productDatabase[result.rawContent]!['quantity']}";
+      if (barcodeKey.isNotEmpty) {
+        // Controleer of barcode bekend is
+        if (barcode.productDatabase.containsKey(barcodeKey)) {
+          // Haal ingevoerde hoeveelheid op
+          int quantity = int.tryParse(_quantityController.text) ?? 0;
+
+          if (quantity > 0) {
+            // Voeg het aantal toe aan de database
+            setState(() {
+              barcode.productDatabase[barcodeKey]!['quantity'] -= quantity;
+              barcode.saveDatabase(); // Sla op in shared_preferences
+
+              scannedResult =
+                  "Aantal toegevoegd: ${barcode.productDatabase[barcodeKey]!['name']} - Nieuw aantal: ${barcode.productDatabase[barcodeKey]!['quantity']}";
+              _quantityController.clear(); // Leeg het invoerveld
+            });
           } else {
-            // Barcode is gescand maar niet in de database
-            scannedResult = "Onbekende barcode: ${result.rawContent}";
+            setState(() {
+              scannedResult = "Fout: voer een geldig aantal in";
+            });
           }
         } else {
-          // Geen barcode gescand
-          scannedResult = "Geen product gescand";
+          setState(() {
+            scannedResult = "Onbekende barcode: ${barcodeKey}";
+          });
         }
-      });
+      } else {
+        setState(() {
+          scannedResult = "Fout: geen barcode gescand";
+        });
+      }
     } catch (e) {
       setState(() {
         scannedResult = "Fout bij scannen: $e";
@@ -56,9 +71,18 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage2> {
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 20),
+            TextField(
+              controller: _quantityController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: 'Voer het aantal in',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
             ElevatedButton(
-              onPressed: scanBarcode,
-              child: Text('Scan barcode'),
+              onPressed: scanAndAddQuantity,
+              child: Text('Aantal toevoegen'),
             ),
             SizedBox(height: 20),
             ElevatedButton(
@@ -66,7 +90,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage2> {
                 Navigator.pop(context);
               },
               child: Text('Terug naar home'),
-            )
+            ),
           ],
         ),
       ),

@@ -26,7 +26,7 @@ class _test extends State<test> {
           if (quantity > 0) {
             // Voeg het aantal toe aan de database
             setState(() {
-              barcode.productDatabase[barcodeKey]!['quantity'] += quantity;
+              barcode.productDatabase[barcodeKey]!['quantity'] -= quantity;
               barcode.saveDatabase(); // Sla op in shared_preferences
 
               scannedResult =
