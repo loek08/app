@@ -5,6 +5,7 @@ import 'barcode-scan en aantal -1.dart';
 import "add_unknown_barcode.dart";
 import 'delete_known_barcode.dart';
 import 'barcode_list.dart';
+import 'bs.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       '/addunknownbarcode': (context) => AddUnknownBarcodePage(),
       '/deleteknownbarcode': (context) => DeleteKnownBarcodePage(),
       '/list': (context) => BarcodeListPage(),
+      '/bs': (context) => test(),
     });
   }
 }

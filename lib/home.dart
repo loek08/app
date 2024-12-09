@@ -65,10 +65,29 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
+      // body: Center(
+      //   child: Text(
+      //     'Welkom bij de Barcode App!',
+      //     style: TextStyle(fontSize: 24),
+      //   ),
+
+      // ),
       body: Center(
-        child: Text(
-          'Welkom bij de Barcode App!',
-          style: TextStyle(fontSize: 24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Welkom bij de Barcode App!',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/bs');
+              },
+              child: Text('Naar test page'),
+            )
+          ],
         ),
       ),
     );

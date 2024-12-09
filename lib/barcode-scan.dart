@@ -13,38 +13,40 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
   final TextEditingController _quantityController = TextEditingController();
   bool showQuantityInput = false;
 
-  Future<void> scanBarcode() async {
-    try {
-      var result = await BarcodeScanner.scan();
+  // Future<void> scanBarcode() async {
+  //   try {
+  //     var result = await BarcodeScanner.scan();
 
-      setState(() {
-        // Controleer eerst of er daadwerkelijk een barcode is gescand
-        if (result.rawContent.isNotEmpty) {
-          // Kijk of de gescande barcode in de productDatabase zit
-          if (barcode.productDatabase.containsKey(result.rawContent)) {
-            scannedResult =
-                "Product gevonden: ${barcode.getProductDatabase()[result.rawContent]!['name']} - Aantal: ${barcode.productDatabase[result.rawContent]!['quantity']}";
-            showQuantityInput = true;
-          } else {
-            // Barcode is gescand maar niet in de database
-            scannedResult = "Onbekende barcode: ${result.rawContent}";
-            showQuantityInput = false;
-          }
-        } else {
-          // Geen barcode gescand
-          scannedResult = "Geen product gescand";
-          showQuantityInput = false;
-        }
-      });
-    } catch (e) {
-      setState(() {
-        scannedResult = "Fout bij scannen: $e";
-        showQuantityInput = false;
-      });
-    }
-  }
+  //     setState(() {
+  //       // Controleer eerst of er daadwerkelijk een barcode is gescand
+  //       if (result.rawContent.isNotEmpty) {
+  //         // Kijk of de gescande barcode in de productDatabase zit
+  //         if (barcode.productDatabase.containsKey(result.rawContent)) {
+  //           scannedResult =
+  //               "Product gevonden: ${barcode.getProductDatabase()[result.rawContent]!['name']} - Aantal: ${barcode.productDatabase[result.rawContent]!['quantity']}";
+  //           showQuantityInput = true;
+  //         } else {
+  //           // Barcode is gescand maar niet in de database
+  //           scannedResult = "Onbekende barcode: ${result.rawContent}";
+  //           showQuantityInput = false;
+  //         }
+  //       } else {
+  //         // Geen barcode gescand
+  //         scannedResult = "Geen product gescand";
+  //         showQuantityInput = false;
+  //       }
+  //     });
+  //   } catch (e) {
+  //     setState(() {
+  //       scannedResult = "Fout bij scannen: $e";
+  //       showQuantityInput = false;
+  //     });
+  //   }
+  // }
 
-  void addQuantity(String barcodeKey, int quantity) {
+  void addQuantity(String barcodeKey, int quantity) async {
+    var result = await BarcodeScanner.scan();
+    barcodeKey = result.rawContent;
     if (barcode.productDatabase.containsKey(barcodeKey)) {
       barcode.productDatabase[barcodeKey]!['quantity'] += quantity;
       barcode.saveDatabase(); // Opslaan naar shared_preferences
@@ -57,6 +59,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
     } else {
       setState(() {
         scannedResult = "Onbekende barcode";
+        showQuantityInput = true;
       });
     }
   }
@@ -78,7 +81,9 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: scanBarcode,
+              onPressed: () {
+                showQuantityInput = true;
+              },
               child: Text('Scan barcode'),
             ),
             if (showQuantityInput) ...[
