@@ -45,15 +45,20 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
   }
 
   void addQuantity(String barcodeKey, int quantity) {
-    for (int i = 0; i < quantity; i++) {
-      barcode.increaseQuantity(barcodeKey);
+    if (barcode.productDatabase.containsKey(barcodeKey)) {
+      barcode.productDatabase[barcodeKey]!['quantity'] += quantity;
+      barcode.saveDatabase(); // Opslaan naar shared_preferences
+
+      setState(() {
+        scannedResult =
+            "Aantal toegevoegd: ${barcode.productDatabase[barcodeKey]!['name']} - Aantal: ${barcode.productDatabase[barcodeKey]!['quantity']}";
+        showQuantityInput = false;
+      });
+    } else {
+      setState(() {
+        scannedResult = "Onbekende barcode";
+      });
     }
-    setState(() {
-      scannedResult =
-          "Aantal toegevoegd: ${barcode.productDatabase[barcodeKey]!['quantity']}";
-      showQuantityInput = false;
-    });
-    barcode.saveDatabase();
   }
 
   @override
@@ -86,15 +91,32 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   if (_quantityController.text.isNotEmpty) {
-                    int quantity = int.parse(_quantityController.text);
-                    addQuantity(scannedResult.split(": ")[1], quantity);
+                    try {
+                      int quantity = int.parse(_quantityController.text);
+                      if (quantity > 0) {
+                        String barcodeKey = scannedResult.split(": ")[1];
+                        addQuantity(barcodeKey, quantity);
+                      } else {
+                        setState(() {
+                          scannedResult = "Fout: aantal moet groter zijn dan 0";
+                        });
+                      }
+                    } catch (e) {
+                      setState(() {
+                        scannedResult = "Fout: voer een geldig getal in";
+                      });
+                    }
+                  } else {
+                    setState(() {
+                      scannedResult = "Fout: geen aantal ingevoerd";
+                    });
                   }
                 },
-                child: Text('Aantal Toevoegen'),
+                child: Text('Aantal toevoegen'),
               ),
             ],
             SizedBox(height: 20),
