@@ -40,7 +40,14 @@ class _InlogpageState extends State<Inlogpage> {
                 Navigator.pushNamed(context, '/');
               },
               child: Text('Naar personeel pagina'),
-            )
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/klant');
+              },
+              child: Text('Naar klant pagina'),
+            ),
           ],
         ),
       ),
