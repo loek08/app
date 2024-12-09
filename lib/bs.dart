@@ -30,7 +30,7 @@ class _Test extends State<Test> {
               ),
               child: Text(
                 'menu',
-                style: TextStyle(fontSize: 24, color: Colors.white),
+                style: TextStyle(fontSize: 24, color: Colors.black),
               ),
             ),
             ListTile(
@@ -85,14 +85,15 @@ class _Test extends State<Test> {
             Text(
               'Welkom bij de Barcode App test page!',
               style: TextStyle(fontSize: 24),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/bs');
+                Navigator.pop(context, '/');
               },
-              child: Text('Naar test page'),
-            )
+              child: Text('Terug naar home'),
+            ),
           ],
         ),
       ),
