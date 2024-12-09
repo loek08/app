@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'barcode-scan.dart';
-import 'home.dart';
+import 'home_personeel.dart';
 import 'barcode-scan en aantal -1.dart';
 import "add_unknown_barcode.dart";
 import 'delete_known_barcode.dart';
