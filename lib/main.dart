@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       '/addunknownbarcode': (context) => AddUnknownBarcodePage(),
       '/deleteknownbarcode': (context) => DeleteKnownBarcodePage(),
       '/list': (context) => BarcodeListPage(),
-      '/bs': (context) => test(),
+      '/bs': (context) => Test(),
     });
   }
 }
