@@ -28,6 +28,13 @@ class Home extends StatelessWidget {
               ),
             ),
             ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('uitloggen'),
+              onTap: () {
+                Navigator.pushNamed(context, '/inlog');
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.add),
               title: Text('Voeg producten toe'),
               onTap: () {
