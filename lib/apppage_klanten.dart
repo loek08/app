@@ -9,8 +9,9 @@ class Home_klant extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Home klant",
-          style: TextStyle(color: Colors.white, fontSize: 24),
+          "Test",
+          style: TextStyle(
+              color: const Color.fromARGB(255, 0, 0, 0), fontSize: 24),
         ),
         centerTitle: true,
       ),
@@ -24,7 +25,7 @@ class Home_klant extends StatelessWidget {
               ),
               child: Text(
                 'menu',
-                style: TextStyle(fontSize: 24, color: Colors.white),
+                style: TextStyle(fontSize: 24, color: Colors.black),
               ),
             ),
             ListTile(
@@ -32,41 +33,6 @@ class Home_klant extends StatelessWidget {
               title: Text('uitloggen'),
               onTap: () {
                 Navigator.pushNamed(context, '/inlog');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.add),
-              title: Text('Voeg producten toe'),
-              onTap: () {
-                Navigator.pushNamed(context, '/barcode');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.delete),
-              title: Text('Verwijder producten'),
-              onTap: () {
-                Navigator.pushNamed(context, '/barcode2');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.add),
-              title: Text('add unkown barcode'),
-              onTap: () {
-                Navigator.pushNamed(context, '/addunknownbarcode');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.delete),
-              title: Text('Delete known barcodes'),
-              onTap: () {
-                Navigator.pushNamed(context, '/deleteknownbarcode');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.list),
-              title: Text('Product lijst'),
-              onTap: () {
-                Navigator.pushNamed(context, '/list');
               },
             ),
           ],
@@ -84,16 +50,10 @@ class Home_klant extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Welkom bij de Barcode App!',
+              'Welkom bij de bestel app!',
               style: TextStyle(fontSize: 24),
+              textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/bs');
-              },
-              child: Text('Naar test page'),
-            )
           ],
         ),
       ),
