@@ -10,7 +10,8 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Home",
-          style: TextStyle(color: Colors.white, fontSize: 24),
+          style: TextStyle(
+              color: const Color.fromARGB(255, 0, 0, 0), fontSize: 24),
         ),
         centerTitle: true,
       ),

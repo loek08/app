@@ -14,7 +14,8 @@ class _InlogpageState extends State<Inlogpage> {
       appBar: AppBar(
         title: Text(
           "Inlogpage",
-          style: TextStyle(color: Colors.white, fontSize: 24),
+          style: TextStyle(
+              color: const Color.fromARGB(255, 0, 0, 0), fontSize: 24),
         ),
         centerTitle: true,
       ),

@@ -9,7 +9,7 @@ class Home_klant extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Test",
+          "home klant",
           style: TextStyle(
               color: const Color.fromARGB(255, 0, 0, 0), fontSize: 24),
         ),
