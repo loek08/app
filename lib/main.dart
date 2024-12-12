@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(title: 'barcode scan', initialRoute: '/inlog', routes: {
+      '/inlog': (context) => Inlogpage(),
       '/': (context) => Home(),
       '/barcode': (context) => BarcodeScannerPage(),
       '/barcode2': (context) => BarcodeScannerPage2(),
@@ -25,7 +26,6 @@ class MyApp extends StatelessWidget {
       '/deleteknownbarcode': (context) => DeleteKnownBarcodePage(),
       '/list': (context) => BarcodeListPage(),
       '/bs': (context) => Test(),
-      '/inlog': (context) => Inlogpage(),
       '/klant': (context) => Home_klant(),
       '/inloggenBarcode': (context) => InloggenBarcode(),
     });
