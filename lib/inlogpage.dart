@@ -38,7 +38,7 @@ class _InlogpageState extends State<Inlogpage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/');
+                Navigator.pushNamed(context, '/inloggenBarcode');
               },
               child: Text('Naar personeel pagina'),
             ),

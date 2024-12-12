@@ -8,6 +8,7 @@ import 'barcode_list.dart';
 import 'bs.dart';
 import 'inlogpage.dart';
 import 'apppage_klanten.dart';
+import 'inloggenBarcode.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       '/bs': (context) => Test(),
       '/inlog': (context) => Inlogpage(),
       '/klant': (context) => Home_klant(),
+      '/inloggenBarcode': (context) => InloggenBarcode(),
     });
   }
 }
