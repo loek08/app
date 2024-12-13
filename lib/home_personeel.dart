@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'barcode.dart';
+// import 'barcode.dart';
 import 'inlogpage.dart';
 
 class Home extends StatelessWidget {
-  final Barcode barcode = Barcode();
+  // final Barcode barcode = Barcode();
 
   @override
   Widget build(BuildContext context) {
