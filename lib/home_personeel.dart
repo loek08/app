@@ -79,13 +79,6 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
-      // body: Center(
-      //   child: Text(
-      //     'Welkom bij de Barcode App!',
-      //     style: TextStyle(fontSize: 24),
-      //   ),
-
-      // ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
