@@ -12,7 +12,6 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
   String scannedResult = 'niets gescanned';
   final TextEditingController _quantityController = TextEditingController();
 
-
   void scanAndAddQuantity() async {
     try {
       var result = await BarcodeScanner.scan(); // Scan de barcode
@@ -31,7 +30,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
               barcode.saveDatabase(); // Sla op in shared_preferences
 
               scannedResult =
-              "Aantal toegevoegd: ${barcode.productDatabase[barcodeKey]!['name']} - Nieuw aantal: ${barcode.productDatabase[barcodeKey]!['quantity']}";
+                  "Aantal toegevoegd: ${barcode.productDatabase[barcodeKey]!['name']} - Nieuw aantal: ${barcode.productDatabase[barcodeKey]!['quantity']}";
               _quantityController.clear(); // Leeg het invoerveld
             });
           } else {
@@ -88,7 +87,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/');
               },
               child: Text('Terug naar home'),
             ),

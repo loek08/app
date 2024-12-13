@@ -10,47 +10,52 @@ class _InlogpageState extends State<Inlogpage> {
   final Barcode barcode = Barcode();
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(
-          "Inlogpage",
-          style: TextStyle(
-              color: const Color.fromARGB(255, 0, 0, 0), fontSize: 24),
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text(
+            "Inlogpage",
+            style: TextStyle(
+                color: const Color.fromARGB(255, 0, 0, 0), fontSize: 24),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
 
-      // body: Center(
-      //   child: Text(
-      //     'Welkom bij de Barcode App!',
-      //     style: TextStyle(fontSize: 24),
-      //   ),
+        // body: Center(
+        //   child: Text(
+        //     'Welkom bij de Barcode App!',
+        //     style: TextStyle(fontSize: 24),
+        //   ),
 
-      // ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Welkom bij de inlog page!',
-              style: TextStyle(fontSize: 24),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/inloggenBarcode');
-              },
-              child: Text('Naar personeel pagina'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/klant');
-              },
-              child: Text('Naar klant pagina'),
-            ),
-          ],
+        // ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Welkom bij de inlog page!',
+                style: TextStyle(fontSize: 24),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/inloggenBarcode');
+                },
+                child: Text('Naar personeel pagina'),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/klant');
+                },
+                child: Text('Naar klant pagina'),
+              ),
+            ],
+          ),
         ),
       ),
     );

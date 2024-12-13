@@ -90,7 +90,7 @@ class _Test extends State<Test> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context, '/');
+                Navigator.pushNamed(context, '/');
               },
               child: Text('Terug naar home'),
             ),
