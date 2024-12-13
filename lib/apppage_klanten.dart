@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'barcode.dart';
+import 'inlogpage.dart';
 
 class Home_klant extends StatelessWidget {
   final Barcode barcode = Barcode();
@@ -32,7 +33,12 @@ class Home_klant extends StatelessWidget {
               leading: Icon(Icons.logout),
               title: Text('uitloggen'),
               onTap: () {
-                Navigator.pushNamed(context, '/inlog');
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Inlogpage()),
+                  (Route<dynamic> route) =>
+                      false, // Verwijdert alle eerdere routes
+                );
               },
             ),
           ],

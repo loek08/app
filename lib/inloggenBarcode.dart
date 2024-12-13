@@ -25,9 +25,10 @@ class _InloggenBarcodeState extends State<InloggenBarcode> {
           _errorMessage = '';
         });
 
-        Navigator.pushReplacement(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => Home()),
+          (Route<dynamic> route) => false, // Verwijdert alle eerdere routes
         );
       } else {
         setState(() {

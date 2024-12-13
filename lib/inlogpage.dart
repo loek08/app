@@ -12,6 +12,7 @@ class _InlogpageState extends State<Inlogpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           "Inlogpage",
           style: TextStyle(

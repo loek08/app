@@ -17,17 +17,32 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'barcode scan', initialRoute: '/inlog', routes: {
-      '/inlog': (context) => Inlogpage(),
-      '/': (context) => Home(),
-      '/barcode': (context) => BarcodeScannerPage(),
-      '/barcode2': (context) => BarcodeScannerPage2(),
-      '/addunknownbarcode': (context) => AddUnknownBarcodePage(),
-      '/deleteknownbarcode': (context) => DeleteKnownBarcodePage(),
-      '/list': (context) => BarcodeListPage(),
-      '/bs': (context) => Test(),
-      '/klant': (context) => Home_klant(),
-      '/inloggenBarcode': (context) => InloggenBarcode(),
-    });
+    return MaterialApp(
+        title: 'barcode scan',
+        initialRoute: '/inlog',
+        onGenerateRoute: (settings) {
+          if (settings.name == '/inlog') {
+            return MaterialPageRoute(
+              builder: (context) {
+                return Inlogpage();
+              },
+              settings: RouteSettings(name: '/inlog'),
+              maintainState: false,
+            );
+          }
+          return null;
+        },
+        routes: {
+          '/inlog': (context) => Inlogpage(),
+          '/': (context) => Home(),
+          '/barcode': (context) => BarcodeScannerPage(),
+          '/barcode2': (context) => BarcodeScannerPage2(),
+          '/addunknownbarcode': (context) => AddUnknownBarcodePage(),
+          '/deleteknownbarcode': (context) => DeleteKnownBarcodePage(),
+          '/list': (context) => BarcodeListPage(),
+          '/bss': (context) => Test(),
+          '/klant': (context) => Home_klant(),
+          '/inloggenBarcode': (context) => InloggenBarcode(),
+        });
   }
 }

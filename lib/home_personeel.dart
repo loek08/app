@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'barcode.dart';
+import 'inlogpage.dart';
 
 class Home extends StatelessWidget {
   final Barcode barcode = Barcode();
@@ -67,7 +68,12 @@ class Home extends StatelessWidget {
               leading: Icon(Icons.list),
               title: Text('Product lijst'),
               onTap: () {
-                Navigator.pushNamed(context, '/list');
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Inlogpage()),
+                  (Route<dynamic> route) =>
+                      false, // Verwijdert alle eerdere routes
+                );
               },
             ),
           ],
@@ -91,7 +97,7 @@ class Home extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/bs');
+                Navigator.pushNamed(context, '/bss');
               },
               child: Text('Naar test page'),
             )
