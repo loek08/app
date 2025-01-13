@@ -67,15 +67,7 @@ flutter_icons:
 flutter:
   uses-material-design: true
   assets:
-    - assets/icon/icon.png
-    - assets/app_v1.3.html
-    - assets/bijt.html
-    - assets/kleur.html
-    - assets/parasieten.html
-    - assets/plantproblemen.html
-    - assets/zon_water.html
-    - assets/app.css
-    - assets/app.js
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
