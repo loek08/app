@@ -9,6 +9,7 @@ import 'bs.dart';
 import 'inlogpage.dart';
 import 'apppage_klanten.dart';
 import 'inloggenBarcode.dart';
+import 'webview_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           '/bss': (context) => Test(),
           '/klant': (context) => Home_klant(),
           '/inloggenBarcode': (context) => InloggenBarcode(),
+          '/webview': (context) => WebViewPage(),
         });
   }
 }

@@ -1,0 +1,45 @@
+body{
+    background-color: rgb(126 207 126 / 74%);
+}
+
+div.h1{
+    margin-left: 20%;
+}
+
+.btn_group .button{
+    background-color: #04AA6D; 
+    border: 1px solid green;
+    color: white;
+    padding: 40px 53px;
+    text-align:center;
+    text-decoration: none;
+    font-size: 32px;
+    cursor: pointer;
+    width: 300px;
+    display: block;
+    margin-left: 30%;
+}
+
+.btn_group .button:not(:last-child){
+    border-bottom: none; /* Prevent double borders */
+
+}
+
+.btn_group .button:hover {
+    background-color: aquamarine;
+}
+
+.btn_group2 .button{
+    background-color: #04AA6D; 
+    border: 1px solid green;
+    color: white;
+    padding: 40px 53px;
+    text-align:center;
+    text-decoration: none;
+    font-size: 32px;
+    cursor: pointer;
+    width: 300px;
+    display: block;
+    margin-top: 1762px;
+    margin-left: 30%;
+}
