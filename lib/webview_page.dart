@@ -14,7 +14,7 @@ class _WebViewPageState extends State<WebViewPage> {
     super.initState();
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(Uri.parse('http://64.227.68.230/'));
+      ..loadRequest(Uri.parse('http://159.223.219.55/'));
   }
 
   @override

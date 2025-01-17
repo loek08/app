@@ -82,7 +82,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage2> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: scanAndAddQuantity,
-              child: Text('Aantal toevoegen'),
+              child: Text('Aantal verwijderen'),
             ),
             SizedBox(height: 20),
             ElevatedButton(
